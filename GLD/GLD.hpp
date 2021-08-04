@@ -27,5 +27,5 @@
 #include <SFML/Graphics.hpp>
 
 #include "Shape/Shape.cpp"
-#include "Axis/Axis.hpp"
-#include "Time/Time.hpp"
+#include "Axis/Axis.cpp"
+#include "Time/Time.cpp"
