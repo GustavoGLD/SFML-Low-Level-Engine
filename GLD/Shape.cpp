@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 
-#include "Shape.cpp"
-
 namespace GLD 
 {
 
