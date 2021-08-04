@@ -28,26 +28,6 @@
 
 namespace GLD{
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Making a new Shape with your VBO and Shader
-    ////////////////////////////////////////////////////////////
-    class Shape {
-    private:
-        sf::RenderStates          _render_states;
-
-    public:
-        std::vector<sf::Vertex>   vertices;
-        sf::VertexBuffer          vertex_buffer;
-        sf::Shader                shader;
-        sf::Transformable         transformable;
-
-        ////////////////////////////////////////////////////////////
-        /// \brief render the Shape
-        /// \param window the current window
-        ////////////////////////////////////////////////////////////
-        void render(sf::RenderWindow &window);
-    };
-
     ////////////////////////////////////////////////////////////////////////////////////////////
     /// \brief Getting input from the W-S, D-A and Q-E Axis. Return a value between -1 and 1
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,12 +93,6 @@ namespace GLD{
     };
 };
 
-
-void GLD::Shape::render(sf::RenderWindow &window){
-    _render_states.shader    = &shader;
-    _render_states.transform = transformable.getTransform();
-    window.draw(vertex_buffer, _render_states);
-}
 
 float GLD::Axis::GetAxis(Axis axis){
     if(sf::Keyboard::isKeyPressed(_axis_array[axis].positive))
