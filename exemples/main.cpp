@@ -40,10 +40,10 @@ int main()
 
         float velocity  = 200.0f;
         float veloc_ang = 180.0f;
-        triangle.transformable.move(  velocity  * GLD::Axis::GetAxis(GLD::Axis::Horizontal)* myTime.getDeltaTime(),
-                                      velocity  * GLD::Axis::GetAxis(GLD::Axis::Vertical)  * myTime.getDeltaTime());
+        triangle.transformable.move(  velocity  * GLD::GetAxis(GLD::Axis::Horizontal)* myTime.getDeltaTime(),
+                                      velocity  * GLD::GetAxis(GLD::Axis::Vertical)  * myTime.getDeltaTime());
 
-        triangle.transformable.rotate(veloc_ang * GLD::Axis::GetAxis(GLD::Axis::Diagonal)  * myTime.getDeltaTime());
+        triangle.transformable.rotate(veloc_ang * GLD::GetAxis(GLD::Axis::Diagonal)  * myTime.getDeltaTime());
 
         window.clear();
         triangle.render(window);

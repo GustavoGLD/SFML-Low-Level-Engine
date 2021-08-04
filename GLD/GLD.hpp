@@ -27,38 +27,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "Shape.cpp"
+#include "Axis.hpp"
 
 namespace GLD{
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    /// \brief Getting input from the W-S, D-A and Q-E Axis. Return a value between -1 and 1
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    namespace Axis{
-
-        namespace { //private namespace
-            struct _Axle {
-                sf::Keyboard::Key positive;
-                sf::Keyboard::Key negative;
-            };
-            std::vector<_Axle> _axis_array = {
-                //positive             //negative
-                {sf::Keyboard::Key::D, sf::Keyboard::Key::A}, //horizontal
-                {sf::Keyboard::Key::S, sf::Keyboard::Key::W}, //vertical
-                {sf::Keyboard::Key::E, sf::Keyboard::Key::Q}  //diagonal
-            };
-        };
-
-        ////////////////////////////////////////////////////////////
-        /// \brief the possible Axis to use
-        ////////////////////////////////////////////////////////////
-        enum Axis { Horizontal, Vertical, Diagonal };
-        
-
-        ////////////////////////////////////////////////////////////
-        /// \brief return a value between -1 and 1 from some Axis
-        ////////////////////////////////////////////////////////////
-        float GetAxis(Axis axis);
-    };
 
     ////////////////////////////////////////////////////////////
     /// \brief to use time functions
@@ -92,14 +64,6 @@ namespace GLD{
         double getDeltaTime();
     };
 };
-
-
-float GLD::Axis::GetAxis(Axis axis){
-    if(sf::Keyboard::isKeyPressed(_axis_array[axis].positive))
-        return  1.0f;
-    if(sf::Keyboard::isKeyPressed(_axis_array[axis].negative))
-        return -1.0f;
-}
 
 GLD::Time::Time() {
     _init_time = std::chrono::high_resolution_clock::now();
