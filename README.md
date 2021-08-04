@@ -1,2 +1,2 @@
 # SFML-Low-Level-Engine
-A Engine that tries to use SFML in a deeper level
+A library that tries to use SFML at a deeper level
