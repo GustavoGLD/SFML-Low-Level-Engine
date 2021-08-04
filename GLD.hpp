@@ -27,6 +27,10 @@
 #include <SFML/Graphics.hpp>
 
 namespace GLD{
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Making a new Shape with your VBO and Shader
+    ////////////////////////////////////////////////////////////
     class Shape {
     private:
         sf::RenderStates          _render_states;
@@ -37,22 +41,24 @@ namespace GLD{
         sf::Shader                shader;
         sf::Transformable         transformable;
 
-        void render(sf::RenderWindow &window){
-            _render_states.shader    = &shader;
-            _render_states.transform = transformable.getTransform();
-            window.draw(vertex_buffer, _render_states);
-        }
+        ////////////////////////////////////////////////////////////
+        /// \brief render the Shape
+        /// \param window the current window
+        ////////////////////////////////////////////////////////////
+        void render(sf::RenderWindow &window);
     };
 
-
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    /// \brief Getting input from the W-S, D-A and Q-E Axis. Return a value between -1 and 1
+    ////////////////////////////////////////////////////////////////////////////////////////////
     namespace Axis{
 
         namespace { //private namespace
-            struct _Axi {
+            struct _Axle {
                 sf::Keyboard::Key positive;
                 sf::Keyboard::Key negative;
             };
-            std::vector<_Axi> _axis_array = {
+            std::vector<_Axle> _axis_array = {
                 //positive             //negative
                 {sf::Keyboard::Key::D, sf::Keyboard::Key::A}, //horizontal
                 {sf::Keyboard::Key::S, sf::Keyboard::Key::W}, //vertical
@@ -60,40 +66,82 @@ namespace GLD{
             };
         };
 
+        ////////////////////////////////////////////////////////////
+        /// \brief the possible Axis to use
+        ////////////////////////////////////////////////////////////
         enum Axis { Horizontal, Vertical, Diagonal };
         
-        float GetAxis(Axis axis){
-            if(sf::Keyboard::isKeyPressed(_axis_array[axis].positive))
-                return  1.0f;
-            if(sf::Keyboard::isKeyPressed(_axis_array[axis].negative))
-                return -1.0f;
-        }
+
+        ////////////////////////////////////////////////////////////
+        /// \brief return a value between -1 and 1 from some Axis
+        ////////////////////////////////////////////////////////////
+        float GetAxis(Axis axis);
     };
 
+    ////////////////////////////////////////////////////////////
+    /// \brief to use time functions
+    ////////////////////////////////////////////////////////////
     class Time {
     private:
         std::chrono::high_resolution_clock::time_point _init_time;
         std::chrono::high_resolution_clock::time_point _last_frame;
-                                                double _delta_time;
+        double _delta_time;
 
     public:
+
+        /////////////////////////////////////////////////////////////////
+        /// \brief determining window startup time. PUT IT IN INIT TIME
+        /////////////////////////////////////////////////////////////////
         Time() {
             _init_time = std::chrono::high_resolution_clock::now();
         };
 
-        double getTime() {
-            std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-            return std::chrono::duration_cast<std::chrono::duration<double>>(now - _init_time).count();
-        };
+        ////////////////////////////////////////////////////////////
+        /// \brief  get the current time based on init time
+        ////////////////////////////////////////////////////////////
+        double getTime();
 
-        void getFrameInit(){
-            std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
-            _delta_time = std::chrono::duration_cast<std::chrono::duration<double>>(now - _last_frame).count();
-            _last_frame = std::chrono::high_resolution_clock::now();
-        }
+        ////////////////////////////////////////////////////////////
+        /// \brief PUT IT IN FRAME INICIALIZATION!!!
+        ////////////////////////////////////////////////////////////
+        void getFrameInit();
 
-        double getDeltaTime() {
-            return _delta_time;
-        }
+        ////////////////////////////////////////////////////////////
+        /// \brief get the time variation between the 2 last frames
+        ////////////////////////////////////////////////////////////
+        double getDeltaTime();
     };
 };
+
+
+void GLD::Shape::render(sf::RenderWindow &window){
+    _render_states.shader    = &shader;
+    _render_states.transform = transformable.getTransform();
+    window.draw(vertex_buffer, _render_states);
+}
+
+float GLD::Axis::GetAxis(Axis axis){
+    if(sf::Keyboard::isKeyPressed(_axis_array[axis].positive))
+        return  1.0f;
+    if(sf::Keyboard::isKeyPressed(_axis_array[axis].negative))
+        return -1.0f;
+}
+
+GLD::Time::Time() {
+    _init_time = std::chrono::high_resolution_clock::now();
+};
+
+double GLD::Time::getTime() {
+    std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+    return std::chrono::duration_cast<std::chrono::duration<double>>(now - _init_time).count();
+};
+
+void GLD::Time::getFrameInit(){
+    std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
+    _delta_time = std::chrono::duration_cast<std::chrono::duration<double>>(now - _last_frame).count();
+    _last_frame = std::chrono::high_resolution_clock::now();
+}
+
+double GLD::Time::getDeltaTime() {
+    return _delta_time;
+}
