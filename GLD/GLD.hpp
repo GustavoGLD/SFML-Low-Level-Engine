@@ -74,9 +74,7 @@ namespace GLD{
         /////////////////////////////////////////////////////////////////
         /// \brief determining window startup time. PUT IT IN INIT TIME
         /////////////////////////////////////////////////////////////////
-        Time() {
-            _init_time = std::chrono::high_resolution_clock::now();
-        };
+        Time();
 
         ////////////////////////////////////////////////////////////
         /// \brief  get the current time based on init time

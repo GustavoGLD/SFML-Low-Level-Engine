@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
-#include "../GLD.hpp"
+#include "../GLD/GLD.hpp"
 
 int main()
 {
