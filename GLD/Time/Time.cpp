@@ -4,7 +4,8 @@
 #include "Time.hpp"
 
 GLD::Time::Time() {
-    _init_time = std::chrono::high_resolution_clock::now();
+    _init_time  = std::chrono::high_resolution_clock::now();
+    _last_frame = std::chrono::high_resolution_clock::now();
 };
 
 double GLD::Time::getTime() {
