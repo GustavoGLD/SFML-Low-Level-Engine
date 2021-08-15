@@ -8,22 +8,13 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
 
-    GLD::Shape triangle;
-    triangle.shader.loadFromFile("shader.vert", "shader.frag");
 
-    triangle.vertices = {
-        sf::Vertex(sf::Vector2f(0.5f, 1.0f), sf::Color::White),
-        sf::Vertex(sf::Vector2f(0.0f, 0.0f), sf::Color::Transparent),
-        sf::Vertex(sf::Vector2f(1.0f, 0.0f), sf::Color::Transparent),
-    };
-    triangle.vertex_buffer.setPrimitiveType(sf::PrimitiveType::Triangles);
-    triangle.vertex_buffer.setUsage        (sf::VertexBuffer::Usage::Static);
-    triangle.vertex_buffer.create          ( triangle.vertices.size());
-    triangle.vertex_buffer.update          (&triangle.vertices[0]);
+    GLD::Shape* quad;
+    quad = GLD::getShape::Rectangle({sf::Color::Red, sf::Color::Green, sf::Color::Blue, sf::Color::White});
 
-    triangle.transformable.setOrigin(0.5f, 1.0f);
-    triangle.transformable.scale    (250.0f, 250.0f);
-    triangle.transformable.move     (125.0f, 125.0f);
+    quad->transformable.setOrigin(0.5f, 0.5);
+    quad->transformable.scale    (250.0f, 250.0f);
+    quad->transformable.move     (125.0f, 125.0f);
 
     while (window.isOpen())
     {
@@ -36,17 +27,16 @@ int main()
                 window.close();
         }
 
-        triangle.shader.setUniform("intensity", ((float)std::sin(myTime.getTime()/ 2.0f + 1.0f)));
+        //triangle.shader.setUniform("intensity", ((float)std::sin(myTime.getTime()/ 2.0f + 1.0f)));
 
         float velocity  = 200.0f;
         float veloc_ang = 180.0f;
-        triangle.transformable.move(  velocity  * GLD::GetAxis(GLD::Axis::Horizontal)* myTime.getDeltaTime(),
+        quad->transformable.move(  velocity  * GLD::GetAxis(GLD::Axis::Horizontal)* myTime.getDeltaTime(),
                                       velocity  * GLD::GetAxis(GLD::Axis::Vertical)  * myTime.getDeltaTime());
 
-        triangle.transformable.rotate(veloc_ang * GLD::GetAxis(GLD::Axis::Diagonal)  * myTime.getDeltaTime());
-
+        quad->transformable.rotate(veloc_ang * GLD::GetAxis(GLD::Axis::Diagonal)  * myTime.getDeltaTime());
         window.clear();
-        triangle.render(window);
+        quad->render(window);
         window.display();
     }
 
