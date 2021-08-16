@@ -3,9 +3,9 @@ A header-only library that tries to use SFML at a deeper level
 
 # 🗣️ Languages
 
-Brazilian Portuguese [(pt_br)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.pt-br.md)
+[(pt_br)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.pt-br.md) Brazilian Portuguese
 
-English [(en)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.md)
+[(en)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.md) English
 
 # 💾 Instalation
 [Download the source code](https://github.com/GustavoGLD/SFML-Low-Level-Engine/archive/refs/heads/main.zip) and put the `GLD/` folder in your project folder
