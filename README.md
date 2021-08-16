@@ -1,10 +1,14 @@
 # ⚙️ SFML-Low-Level-Engine ⚙️
 A header-only library that tries to use SFML at a deeper level
 
+# 🗣️ Languages
+
+Brazilian Portuguese [(pt_br)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.pt-br.md)
+
+English [(en)](https://github.com/GustavoGLD/SFML-Low-Level-Engine/blob/main/README.md)
 
 # 💾 Instalation
-Download the source code and put the GLD folder in your project folder
-
+[Download the source code](https://github.com/GustavoGLD/SFML-Low-Level-Engine/archive/refs/heads/main.zip) and put the `GLD/` folder in your project folder
 
 # 📖 Wiki
 
@@ -52,7 +56,7 @@ You can add more axes if you like.
 
 ### ⏰ Time
 
-> With the Time class, we can get the total application time and get the variation of the last 2 game frames.
+> With the Time class, we can get the total application time and get the time variation between the last 2 frames.
 
 We must declare our Time object at the beginning of the application, there it will start counting the time:
 ```cpp
@@ -71,7 +75,7 @@ we can get the time between the last 2 frames with the getDeltaTime() method, wh
 double currentTime = myTime.getDeltaTime();
 ```
 
-We can get the total application time with the getTime() method, which is based on the instant the time object was started.
+We can get the total application time with the getTime() method, which is based on the instant the time object was declared.
 ```cpp
 double currentTime = myTime.getTime();
 ```
