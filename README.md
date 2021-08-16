@@ -48,6 +48,7 @@ std::vector<_Axle> _axis_array = {
 
 enum Axis { Horizontal, Vertical, Diagonal };
 ```
+You can add more axes if you like.
 
 ### ⏰ Time
 
