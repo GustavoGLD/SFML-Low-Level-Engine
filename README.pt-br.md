@@ -1,5 +1,5 @@
 # ⚙️ SFML-Low-Level-Engine ⚙️
-Uma biblioteca header-only que tenta usar SFML em um nível mais profundo
+Uma biblioteca headers-only que tenta usar SFML em um nível mais profundo
 
 # 🗣️ Languages
 
